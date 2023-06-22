@@ -1,20 +1,26 @@
 let btn = document.getElementById('btn');
-let joke = document.getElementById('joke');
-let joke2 = document.getElementById('joke2');
-let joke3 = document.getElementById('joke3');
-let joke4 = document.getElementById('joke4');
-let joke5 = document.getElementById('joke5');
-let joke6 = document.getElementById('joke6');
-
+let gender = document.getElementById('gender');
+let address = document.getElementById('address');
+let email = document.getElementById('email');
+let cell = document.getElementById('cell');
+let name = document.getElementById('name');
+let firstName = document.getElementById('first');
+let lastName = document.getElementById('last');
+let img = document.getElementById('img');
 
 btn.addEventListener('click', myFunction);
 function myFunction(){
-    fetch('https://api.chucknorris.io/jokes/random?category=science', {
+    fetch('https://randomuser.me/api/', {
         method: "GET"
 })
     .then(response => response.json())
     .then(data => {
-            joke.innerText = data.value;
-            console.log(data)
+            firstName.innerText = data.results[0].name.first;
+            lastName.innerText = data.results[0].name.last;
+            gender.innerText = data.results[0].gender;
+            address.innerText = data.results[0].location.city;
+            email.innerText = data.results[0].email;
+            cell.innerText = data.results[0].cell;
+            img.src = data.results[0].picture.large;
         })
         }
