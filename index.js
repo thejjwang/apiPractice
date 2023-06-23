@@ -34,3 +34,12 @@ async function myFunction(){
 //             img.src = data.results[0].picture.large;
 //         })
 //         }
+let joke = document.getElementById('joke');
+let btn2 = document.getElementById('btn2');
+btn2.addEventListener('click', getJoke);
+async function getJoke(){
+    let response = await fetch('https://api.chucknorris.io/jokes/random');
+    let data = await response.json();
+    console.log(data);
+    joke.innerText = data.value;
+}
