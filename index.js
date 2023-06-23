@@ -9,18 +9,28 @@ let lastName = document.getElementById('last');
 let img = document.getElementById('img');
 
 btn.addEventListener('click', myFunction);
-function myFunction(){
-    fetch('https://randomuser.me/api/', {
-        method: "GET"
-})
-    .then(response => response.json())
-    .then(data => {
-            firstName.innerText = data.results[0].name.first;
-            lastName.innerText = data.results[0].name.last;
-            gender.innerText = data.results[0].gender;
-            address.innerText = data.results[0].location.city;
-            email.innerText = data.results[0].email;
-            cell.innerText = data.results[0].cell;
-            img.src = data.results[0].picture.large;
-        })
-        }
+async function myFunction(){
+    let response = await fetch('https://randomuser.me/api/');
+    let results = await response.json();
+    firstName.innerText = results.results[0].name.first;
+    lastName.innerText = results.results[0].name.last;
+    gender.innerText = results.results[0].gender;
+    address.innerText = results.results[0].location.city;
+    email.innerText = results.results[0].email;
+    cell.innerText = results.results[0].cell;
+    img.src = results.results[0].picture.large;
+}
+//     fetch('https://randomuser.me/api/', {
+//         method: "GET"
+// })
+//     .then(response => response.json())
+//     .then(data => {
+//             firstName.innerText = data.results[0].name.first;
+//             lastName.innerText = data.results[0].name.last;
+//             gender.innerText = data.results[0].gender;
+//             address.innerText = data.results[0].location.city;
+//             email.innerText = data.results[0].email;
+//             cell.innerText = data.results[0].cell;
+//             img.src = data.results[0].picture.large;
+//         })
+//         }
