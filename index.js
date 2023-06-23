@@ -7,9 +7,13 @@ let name = document.getElementById('name');
 let firstName = document.getElementById('first');
 let lastName = document.getElementById('last');
 let img = document.getElementById('img');
+let quote = document.getElementById('quote');
 
 btn.addEventListener('click', myFunction);
 async function myFunction(){
+    const quoteResponse = await fetch('https://api.chucknorris.io/jokes/random');
+    const quoteResults = await quoteResponse.json();
+    quote.innerText = quoteResults.value;
     let response = await fetch('https://randomuser.me/api/');
     let results = await response.json();
     firstName.innerText = results.results[0].name.first;
@@ -19,7 +23,15 @@ async function myFunction(){
     email.innerText = results.results[0].email;
     cell.innerText = results.results[0].cell;
     img.src = results.results[0].picture.large;
+    // randomQuote();
 }
+
+// async function randomQuote(){
+//     let response = await fetch('https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?');
+//     let data = await response.json();
+//     quote.innerText = data.quoteText;
+//     console.log(data)
+// }
 //     fetch('https://randomuser.me/api/', {
 //         method: "GET"
 // })
@@ -34,12 +46,3 @@ async function myFunction(){
 //             img.src = data.results[0].picture.large;
 //         })
 //         }
-let joke = document.getElementById('joke');
-let btn2 = document.getElementById('btn2');
-btn2.addEventListener('click', getJoke);
-async function getJoke(){
-    let response = await fetch('https://api.chucknorris.io/jokes/random');
-    let data = await response.json();
-    console.log(data);
-    joke.innerText = data.value;
-}
